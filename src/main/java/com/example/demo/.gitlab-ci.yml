@@ -1,0 +1,57 @@
+stages:
+  - build
+  - test
+  - deploy
+
+build-backend:
+  stage: build
+  image: openjdk:17
+  script:
+    - ./gradlew clean build
+  artifacts:
+    paths:
+      - build/libs/
+
+build-frontend:
+  stage: build
+  image: node:16
+  script:
+    - cd frontend
+    - npm install
+    - npm run build
+  artifacts:
+    paths:
+      - frontend/dist/
+
+test-backend:
+  stage: test
+  image: openjdk:17
+  script:
+    - ./gradlew test
+
+test-frontend:
+  stage: test
+  image: node:16
+  script:
+    - cd frontend
+    - npm run test
+
+deploy-backend:
+  stage: deploy
+  image: python:3.9
+  script:
+    - curl -X POST -H "Authorization: Bearer $RENDER_API_KEY" \
+      -d '{"serviceId":"backend-service-id"}' \
+      https://api.render.com/v1/services/backend-service-id/deploys
+  only:
+    - main
+
+deploy-frontend:
+  stage: deploy
+  image: python:3.9
+  script:
+    - curl -X POST -H "Authorization: Bearer $RENDER_API_KEY" \
+      -d '{"serviceId":"frontend-service-id"}' \
+      https://api.render.com/v1/services/frontend-service-id/deploys
+  only:
+    - main
