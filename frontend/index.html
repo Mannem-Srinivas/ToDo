@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Smart To-Do List</title>
+  <link rel="stylesheet" href="style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+  <div class="app-container">
+    <header class="app-header">
+      <h1><i class="fas fa-tasks"></i> Smart To-Do List</h1>
+      <p>Stay organized and productive with your tasks at a glance.</p>
+    </header>
+
+    <main class="app-main">
+      <div id="todo-list" class="todo-list"></div>
+
+      <form id="add-todo-form" class="add-todo-form">
+        <input type="text" id="new-task" placeholder="Enter a new task" required>
+        <select id="priority">
+          <option value="LOW">Low Priority</option>
+          <option value="MEDIUM">Medium Priority</option>
+          <option value="HIGH">High Priority</option>
+        </select>
+        <button type="submit"><i class="fas fa-plus-circle"></i> Add Task</button>
+      </form>
+
+      <button id="voice-btn" class="voice-btn">
+        <i class="fas fa-microphone"></i> Voice Command
+      </button>
+    </main>
+
+    <footer class="app-footer">
+      <p>Made with <i class="fas fa-heart"></i> for productivity.</p>
+    </footer>
+  </div>
+  <script src="script.js"></script>
+</body>
+</html>

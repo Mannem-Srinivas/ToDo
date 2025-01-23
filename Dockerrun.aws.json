@@ -1,0 +1,30 @@
+{
+    "AWSEBDockerrunVersion": "1",
+    "containerDefinitions": [
+      {
+        "name": "frontend",
+        "image": "srinivasmannem/todo-frontend:latest",
+        "essential": true,
+        "memory": 128,
+        "portMappings": [
+          {
+            "containerPort": 80,
+            "hostPort": 80
+          }
+        ]
+      },
+      {
+        "name": "backend",
+        "image": "srinivasmannem/todo-backend:latest",
+        "essential": true,
+        "memory": 256,
+        "portMappings": [
+          {
+            "containerPort": 8080,
+            "hostPort": 8080
+          }
+        ]
+      }
+    ]
+  }
+  
