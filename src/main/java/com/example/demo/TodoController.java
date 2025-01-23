@@ -13,7 +13,8 @@ import java.util.Optional;
 //@CrossOrigin(origins = "http://todo-frontend-1:5500")
 
 //@CrossOrigin(origins = "http://frontend:5500")
-@CrossOrigin(origins = "http://127.0.0.1:5501") // Allow requests from your frontend
+//@CrossOrigin(origins = "http://127.0.0.1:5501") // Allow requests from your frontend
+@CrossOrigin(origins = "https://todo-frontend-jh1x.onrender.com/")
 //@CrossOrigin(origins = "http://localhost:5500")
 //@CrossOrigin(origins = "http://localhost:5501")
 //@CrossOrigin(origins = "http://localhost:5500", allowedHeaders = "*", methods = { RequestMethod.GET, RequestMethod.POST, RequestMethod.PUT, RequestMethod.DELETE, RequestMethod.OPTIONS })
