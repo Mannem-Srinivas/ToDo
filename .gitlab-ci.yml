@@ -1,0 +1,42 @@
+stages:
+  - build
+  - test
+  - deploy
+build:
+  stage: build
+  image: maven:3.8.5-openjdk-17
+  script:
+    - mvn clean package
+  artifacts:
+    paths:
+      - target/*.jar
+test:
+  stage: test
+  image: maven:3.8.5-openjdk-17
+  script:
+    - mvn test
+  allow_failure: false
+deploy-backend:
+  stage: deploy
+  image: curlimages/curl:7.85.0
+  script:
+    - >
+      curl -X POST -H "Authorization: Bearer $RENDER_API_KEY" \
+      -d '{"serviceId":"your-backend-service-id"}' \
+      https://api.render.com/v1/services/your-backend-service-id/deploys
+  only:
+    refs:
+      - main
+
+deploy-frontend:
+  stage: deploy
+  image: curlimages/curl:7.85.0
+  script:
+    - >
+      curl -X POST -H "Authorization: Bearer $RENDER_API_KEY" \
+      -d '{"serviceId":"your-frontend-service-id"}' \
+      https://api.render.com/v1/services/your-frontend-service-id/deploys
+  only:
+    refs:
+      - main
+
