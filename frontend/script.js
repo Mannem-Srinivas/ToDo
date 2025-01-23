@@ -1,6 +1,10 @@
 // Dockerized setup
-const apiUrl = 'https://todo-cedl.onrender.com/todos';
-const baseUrl = 'http://localhost:8080/todos';// Adjust based on Docker or local setup
+//const apiUrl = 'https://todo-cedl.onrender.com/todos';
+
+//const baseUrl = 'http://localhost:8080/todos';// Adjust based on Docker or local setup
+
+const baseUrl = 'https://todo-cedl.onrender.com/todos';
+
 function fetchTodos() {
     fetch(baseUrl)
       .then(response => response.json())
