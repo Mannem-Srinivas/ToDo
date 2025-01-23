@@ -75,22 +75,54 @@
 
 
 
+#
+#
+## Use the official OpenJDK image
+#FROM openjdk:17-jdk-slim
+#
+## Set the working directory in the container
+#WORKDIR /app
+#
+## Copy the JAR file into the container
+#COPY target/todo-app-0.0.1-SNAPSHOT.jar app.jar
+#
+## Expose port 8080 for the backend
+#EXPOSE 8080
+#
+## Run the application
+#CMD ["java", "-jar", "app.jar"]
+#
 
 
-# Use the official OpenJDK image
-FROM openjdk:17-jdk-slim
 
-# Set the working directory in the container
+
+
+# Use Maven image to build the application
+FROM maven:3.8.5-openjdk-17 AS builder
+
+# Set working directory for the build
 WORKDIR /app
 
-# Copy the JAR file into the container
-COPY target/todo-app-0.0.1-SNAPSHOT.jar app.jar
+# Copy Maven project files
+COPY pom.xml .
+COPY src ./src
 
-# Expose port 8080 for the backend
+# Build the application
+RUN mvn clean package -DskipTests
+
+# Use a lightweight JDK image for running the app
+FROM openjdk:17-jdk-slim
+
+# Set working directory for the app
+WORKDIR /app
+
+# Copy the JAR file from the builder stage
+COPY --from=builder /app/target/todo-app-0.0.1-SNAPSHOT.jar app.jar
+
+# Expose the application's port
 EXPOSE 8080
 
-# Run the application
+# Command to run the application
 CMD ["java", "-jar", "app.jar"]
-
 
 
