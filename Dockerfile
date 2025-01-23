@@ -56,20 +56,41 @@
 
 
 
+#
+## Use OpenJDK as the base image
+#FROM openjdk:17-jdk-slim
+#
+## Set the working directory inside the container
+#WORKDIR /app
+#
+## Copy the JAR file into the container
+#COPY target/demo-0.0.1-SNAPSHOT.jar app.jar
+#
+## Expose port 8080 for the backend
+#EXPOSE 8080
+#
+## Run the JAR file
+#ENTRYPOINT ["java", "-jar", "app.jar"]
 
-# Use OpenJDK as the base image
+
+
+
+
+
+# Use the official OpenJDK image
 FROM openjdk:17-jdk-slim
 
-# Set the working directory inside the container
+# Set the working directory in the container
 WORKDIR /app
 
 # Copy the JAR file into the container
-COPY target/demo-0.0.1-SNAPSHOT.jar app.jar
+COPY target/todo-app-0.0.1-SNAPSHOT.jar app.jar
 
 # Expose port 8080 for the backend
 EXPOSE 8080
 
-# Run the JAR file
-ENTRYPOINT ["java", "-jar", "app.jar"]
+# Run the application
+CMD ["java", "-jar", "app.jar"]
+
 
 
