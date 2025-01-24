@@ -265,8 +265,8 @@ body {
   text-align: center;
   margin-top: 20px;
   padding: 10px;
-  /* background: linear-gradient(90deg, #2575fc, #6a11cb); */
-  background: #28a745;
+  background: linear-gradient(90deg, #2575fc, #6a11cb);
+  /* background: #28a745; */
   color: white;
   border-radius: 5px;
 }
