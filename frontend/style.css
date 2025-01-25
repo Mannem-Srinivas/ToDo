@@ -164,7 +164,39 @@ body {
 }
 
 /* Todo List Section */
-.todo-list {
+.todo-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: #f9fafc;
+  padding: 15px;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.todo-item:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.todo-item .task-name {
+  flex: 1; /* Take remaining space */
+  margin-right: 10px; /* Space between task name and priority label */
+  word-break: break-word; /* Wrap long words if needed */
+}
+
+.todo-item .priority-label {
+  flex-shrink: 0; /* Prevent shrinking */
+  padding: 5px 12px;
+  border-radius: 20px;
+  font-size: 0.8rem;
+  font-weight: bold;
+  text-transform: uppercase;
+  text-align: center;
+}
+
+/* .todo-list {
   display: flex;
   flex-direction: column;
   gap: 15px;
@@ -193,7 +225,7 @@ body {
   font-size: 0.8rem;
   font-weight: bold;
   text-transform: uppercase;
-}
+} */
 
 .priority-label.LOW {
   background: #28a745;
