@@ -125,6 +125,203 @@
 
 
 
+/* 
+body {
+  font-family: 'Poppins', sans-serif;
+  background: #e9eef5;
+  margin: 0;
+  padding: 0;
+  color: #2c3e50;
+}
+
+
+.app-container {
+  max-width: 900px;
+  margin: 20px auto;
+  padding: 20px;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+  background: #ffffff;
+  border-radius: 10px;
+}
+
+
+.app-header {
+  text-align: center;
+  padding: 20px;
+  border-radius: 10px;
+  background: linear-gradient(90deg, #6a11cb, #2575fc);
+  color: white;
+}
+
+.app-header h1 {
+  font-size: 2.8rem;
+  margin-bottom: 10px;
+}
+
+.app-header p {
+  font-size: 1.2rem;
+  margin: 0;
+}
+
+
+.todo-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: #f9fafc;
+  padding: 15px;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.todo-item:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+} */
+
+/* .todo-item .task-name {
+  flex: 1; 
+  margin-right: 10px; 
+  word-break: break-word; 
+}
+
+.todo-item .priority-label {
+  flex-shrink: 0; 
+  padding: 5px 12px;
+  border-radius: 20px;
+  font-size: 0.8rem;
+  font-weight: bold;
+  text-transform: uppercase;
+  text-align: center;
+} */
+
+/* .todo-list {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  margin: 20px 0;
+}
+
+.todo-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: #f9fafc;
+  padding: 15px;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.todo-item:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.todo-item .priority-label {
+  padding: 5px 12px;
+  border-radius: 20px;
+  font-size: 0.8rem;
+  font-weight: bold;
+  text-transform: uppercase;
+} */
+/* 
+.priority-label.LOW {
+  background: #28a745;
+  color: white;
+}
+
+.priority-label.MEDIUM {
+  background: #ffc107;
+  color: black;
+}
+
+.priority-label.HIGH {
+  background: #dc3545;
+  color: white;
+}
+
+
+.add-todo-form {
+  display: flex;
+  gap: 10px;
+}
+
+.add-todo-form input,
+.add-todo-form select {
+  flex: 1;
+  padding: 12px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  font-size: 1rem;
+}
+
+.add-todo-form button {
+  padding: 12px 20px;
+  background: linear-gradient(90deg, #2575fc, #6a11cb);
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 1rem;
+  transition: background 0.3s;
+}
+
+.add-todo-form button:hover {
+  background: linear-gradient(90deg, #6a11cb, #2575fc);
+}
+
+
+.voice-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 20px;
+  padding: 12px;
+  background: linear-gradient(90deg, #17a2b8, #138496);
+  color: white;
+  border-radius: 5px;
+  border: none;
+  cursor: pointer;
+  font-size: 1rem;
+  transition: background 0.3s;
+}
+
+.voice-btn:hover {
+  background: linear-gradient(90deg, #138496, #17a2b8);
+}
+
+
+.app-footer {
+  text-align: center;
+  margin-top: 20px;
+  padding: 10px;
+  background: linear-gradient(90deg, #2575fc, #6a11cb);
+
+  color: white;
+  border-radius: 5px;
+}
+
+
+@media (max-width: 768px) {
+  .add-todo-form {
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .add-todo-form button {
+    width: 100%;
+  }
+} */
+
+
+
+
+
+
+
+
 /* Global Styles */
 body {
   font-family: 'Poppins', sans-serif;
@@ -132,6 +329,7 @@ body {
   margin: 0;
   padding: 0;
   color: #2c3e50;
+  overflow-x: hidden; /* Prevent horizontal scrolling */
 }
 
 /* App Container */
@@ -164,9 +362,17 @@ body {
 }
 
 /* Todo List Section */
-.todo-item {
+.todo-list {
   display: flex;
-  justify-content: space-between;
+  flex-direction: column;
+  gap: 15px; /* Space between todos */
+  margin: 20px 0;
+}
+
+.todo-item {
+  display: grid;
+  grid-template-columns: auto 100px 100px; /* Task, Priority, and Buttons */
+  gap: 10px;
   align-items: center;
   background: #f9fafc;
   padding: 15px;
@@ -181,13 +387,12 @@ body {
 }
 
 .todo-item .task-name {
-  flex: 1; /* Take remaining space */
-  margin-right: 10px; /* Space between task name and priority label */
-  word-break: break-word; /* Wrap long words if needed */
+  word-wrap: break-word; /* Wrap long words */
+  overflow-wrap: break-word; /* Handle long unbroken words */
+  line-height: 1.6;
 }
 
 .todo-item .priority-label {
-  flex-shrink: 0; /* Prevent shrinking */
   padding: 5px 12px;
   border-radius: 20px;
   font-size: 0.8rem;
@@ -195,37 +400,6 @@ body {
   text-transform: uppercase;
   text-align: center;
 }
-
-/* .todo-list {
-  display: flex;
-  flex-direction: column;
-  gap: 15px;
-  margin: 20px 0;
-}
-
-.todo-item {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  background: #f9fafc;
-  padding: 15px;
-  border-radius: 8px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  transition: transform 0.2s, box-shadow 0.2s;
-}
-
-.todo-item:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-}
-
-.todo-item .priority-label {
-  padding: 5px 12px;
-  border-radius: 20px;
-  font-size: 0.8rem;
-  font-weight: bold;
-  text-transform: uppercase;
-} */
 
 .priority-label.LOW {
   background: #28a745;
@@ -240,6 +414,32 @@ body {
 .priority-label.HIGH {
   background: #dc3545;
   color: white;
+}
+
+.todo-item button {
+  padding: 8px 12px;
+  border-radius: 5px;
+  border: none;
+  font-size: 0.9rem;
+  cursor: pointer;
+  color: white;
+  transition: background 0.3s;
+}
+
+.todo-item button.update {
+  background: #007bff;
+}
+
+.todo-item button.update:hover {
+  background: #0056b3;
+}
+
+.todo-item button.delete {
+  background: #dc3545;
+}
+
+.todo-item button.delete:hover {
+  background: #a71d2a;
 }
 
 /* Form Section */
@@ -298,7 +498,6 @@ body {
   margin-top: 20px;
   padding: 10px;
   background: linear-gradient(90deg, #2575fc, #6a11cb);
-  /* background: #28a745; */
   color: white;
   border-radius: 5px;
 }
@@ -312,5 +511,14 @@ body {
 
   .add-todo-form button {
     width: 100%;
+  }
+
+  .todo-item {
+    grid-template-columns: 1fr; /* Stack items in a column */
+    text-align: center;
+  }
+
+  .priority-label {
+    margin-top: 10px; /* Space for better visibility */
   }
 }
